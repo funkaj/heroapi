@@ -11,13 +11,14 @@ class SearchResultContainer extends Component {
 
   // When this component mounts, search the Giphy API for pictures of kittens
   componentDidMount() {
-    this.searchGiphy("101");
+    this.searchGiphy("characters");
   }
 
   searchGiphy = query => {
     API.search(query)
-    .then(res => this.setState({ results: res.data.data }))
-    .then(console.log(this.state.results))
+    .then(res => console.log(res.data.data.results))
+    //loop through array to set state
+    .then(res => this.setState({ results: res.data.data.results }))
       .catch(err => console.log(err));
   };
 

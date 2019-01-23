@@ -1,18 +1,14 @@
 import axios from "axios";
 
-const BASEURL = "https://superheroapi.com/api/";
-const APIKEY = "10158796361293636/";
+
+const pubAPI = ''
 
 // Export an object with a "search" method that searches the Giphy API for the passed query
 export default {
   search: function(query) {
-
-//     axios.get(`${BASEURL}${APIKEY}${query}`).then(
-//   function(response) {
-//     // Then we print out the imdbRating
-//     console.log(response);
-//   }
-// );
-    return axios.get(`${BASEURL}${APIKEY}${query}`);
+    const url = `http://gateway.marvel.com/v1/public/${query}?limit=10&apikey=${pubAPI}`
+    //const url = `${BASEURL}${APIKEY}${query}`
+    console.log(url)
+   return axios.get(url)
   }
 };

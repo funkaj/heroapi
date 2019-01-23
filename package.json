@@ -4,11 +4,12 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "cors": "^2.8.5",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts": "2.1.3"
   },
-  "proxy": "www.superheroapi.com",
+  "proxy": "https://www.superheroapi.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -23,5 +24,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ] 
+  ]
 }
