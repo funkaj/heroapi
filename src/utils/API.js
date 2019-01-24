@@ -8,7 +8,13 @@ export default {
   search: function(query) {
     const url = `http://gateway.marvel.com/v1/public/${query}?limit=10&apikey=${pubAPI}`
     //const url = `${BASEURL}${APIKEY}${query}`
-    console.log(url)
+    
    return axios.get(url)
+  },
+
+  searchByName: function(query) {
+	const newUrl =`https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&orderBy=-name&limit=10&apikey=${pubAPI}`
+    
+   return axios.get(newUrl)
   }
 };

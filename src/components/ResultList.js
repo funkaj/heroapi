@@ -1,11 +1,18 @@
 import React from "react";
 
 function ResultList(props) {
+	
   return (
     <ul className="list-group">
       {props.results.map(result => (
         <li className="list-group-item" key={result.id}>
-          <img alt={result.title} className="img-fluid" src={result.images.original.url} />
+          <img alt={result.name} className="img-fluid" src={`${result.thumbnail.path}/portrait_xlarge.${result.thumbnail.extension}`} />
+		  <h1>{result.name}</h1>
+		  <p>{`${result.description}`}</p>
+		  <h2>Some Comics</h2>
+		 {result.comics.items.map(res => (
+		  <p key={res.name}>{`${res.name}`}</p>
+		  ))}
         </li>
       ))}
     </ul>
