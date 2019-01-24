@@ -24,6 +24,16 @@ class SearchResultContainer extends Component {
     .catch(err => console.log(err));
   };
 
+  searchComic = query => {
+    API.searchComicVine(query)
+	.then(res => {
+		 
+		this.setState({ results: res.data.data.results })	
+		
+	})
+    .catch(err => console.log(err));
+  };
+
   searchName = query => {
 	  this.setState({ results: []})
     API.searchByName(query)
