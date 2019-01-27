@@ -1,9 +1,8 @@
 import axios from "axios";
 
-
 const pubAPI = process.env.REACT_APP_MARVEL_PUBLIC_API_KEY
 const comAPI = process.env.REACT_APP_COMIC_VINE_API_KEY
-// Export an object with a "search" method that searches the Giphy API for the passed query
+// Export an object with a "search" method that searches the Marvel API for the passed query
 export default {
   search: function(query) {
     let url = `http://gateway.marvel.com/v1/public/${query}?limit=10&apikey=${pubAPI}`
