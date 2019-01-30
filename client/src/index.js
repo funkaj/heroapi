@@ -12,6 +12,7 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import Signup from './components/Signup';
 import Navbar from './components/Navbar';
+import Hero from './components/SearchResultContainer'
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 
@@ -28,6 +29,7 @@ ReactDOM.render(
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/profile" component={Profile} />
+            <Route path='/hero' component={Hero} />
         </div>
     </Router>
     , document.getElementById('root')

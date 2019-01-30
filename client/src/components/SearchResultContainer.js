@@ -10,7 +10,7 @@ import withAuth from "./withAuth";
 class SearchResultContainer extends Component {
   state = {
     search: "",
-	results: [],
+	  results: [],
   };
 
   // When this component mounts, search the Giphy API for pictures of kittens
@@ -20,11 +20,11 @@ class SearchResultContainer extends Component {
 
   searchGiphy = query => {
     API.search(query)
-	.then(res => {
-		 
-		this.setState({ results: res.data.data.results })	
-		
-	})
+    .then(res => {
+      this.setState({ results: res.data.results })	
+      
+      console.log(this.state.results)
+    })
     .catch(err => console.log(err));
   };
 
@@ -34,10 +34,8 @@ class SearchResultContainer extends Component {
 	.then(res => {
 		console.log(res.data.results)
 		this.setState({ results: res.data.results })
-		
 	})
     .catch(err => console.log(err));
-	console.log(this.state.results)	
   };
 
   searchName = query => {

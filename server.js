@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan'); // used to see requests
 const app = express();
 const db = require('./models');
+const axios = require('axios');
 const PORT = process.env.PORT || 3001;
 
 // Setting CORS so that any website can
@@ -30,7 +31,6 @@ mongoose.set('useCreateIndex', true);
 const isAuthenticated = exjwt({
   secret: 'all sorts of code up in here'
 });
-
 
 // LOGIN ROUTE
 app.post('/api/login', (req, res) => {
@@ -72,6 +72,22 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+app.get('/api/hero', (req, res) => {
+  // const pubAPI = 'a10c22d5644ec350180e248d8943669f'
+  let url = `https://comicvine.gamespot.com/api/search/?api_key=46e737ba92d7d340875e822ad8bcea22fb3b0be0&format=json&resources=character&query=spider-man`
+  // let marvelUrl = `http://gateway.marvel.com/v1/public/characters?limit=10&apikey=${pubAPI}`
+  console.log('==========')
+  
+    axios.get(url, { params: { q: req.query } })
+        .then(response => {
+          
+            res.json(response.data);
+        })
+        .catch(err => res.json(err.message));
+
+  console.log('==========')
+  
+});
 
 app.get('/', isAuthenticated /* Using the express jwt MW here */, (req, res) => {
   res.send('You are authenticated'); //Sending some response when authenticated
