@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import ResultList from "./ResultList";
 import API from "../utils/API";
+// import AuthService from './AuthService';
+import withAuth from "./withAuth";
+
+
 
 class SearchResultContainer extends Component {
   state = {
@@ -25,13 +29,15 @@ class SearchResultContainer extends Component {
   };
 
   searchComic = query => {
-    API.searchComicVine(query)
+	  this.setState({ results: []})
+	  API.searchComicVine(query)
 	.then(res => {
-		 
-		this.setState({ results: res.data.data.results })	
+		console.log(res.data.results)
+		this.setState({ results: res.data.results })
 		
 	})
     .catch(err => console.log(err));
+	console.log(this.state.results)	
   };
 
   searchName = query => {
@@ -73,4 +79,4 @@ class SearchResultContainer extends Component {
   }
 }
 
-export default SearchResultContainer;
+export default withAuth(SearchResultContainer);

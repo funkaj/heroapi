@@ -1,3 +1,3 @@
 module.exports = {
-  Hero: require("./hero")
+  User: require('./User')
 };
