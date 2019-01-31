@@ -6,6 +6,7 @@ import API from "../utils/API";
 class SearchResultContainer extends Component {
   state = {
 	search: "",
+	superheroApi: [],
 	stats: [],
 	// stats: [{
 	// 	combat: '',
@@ -16,6 +17,7 @@ class SearchResultContainer extends Component {
 	// 	strength: ''
 	// }],
 	results: [],
+
   };
 
   // When this component mounts, search the Giphy API for pictures of kittens
@@ -28,8 +30,9 @@ class SearchResultContainer extends Component {
   searchComic = query => {
     API.searchComicVine(query)
 	.then(res => {
-		 console.log( res.data.results)
+		console.log( res.data.results)
 		this.setState({ results: res.data.results })	
+		this.matchStats()
 		
 	})
 	.catch(err => console.log(err));
@@ -39,29 +42,44 @@ class SearchResultContainer extends Component {
 
 	  API.searchSuperHero(query)
 	.then(res => {
-		// let stat = res.data
-		
-		this.setState({ 
-			stats: res.data
-			// stats: {
-				// 	combat: stat.combat,
-				// 	durability: stat.durability,
-				// 	intelligence: stat.intelligence,
-				// 	power: stat.power,
-				// 	speed: stat.speed,
-				// 	strength: stat.strength
-				// }
-			})
-			console.log(this.state.stats)
-		})
-		.catch(err => console.log(err));
-  };
+		let stat = res.data;
+		this.setState({	superheroApi: stat });
+	
+	})
+	.catch(err => console.log(err));
+	};
 
+	matchStats = x => {
+		const comicRes = this.state.results;
+		const superApi = this.state.superheroApi;
+
+		comicRes.map(y => {
+			const refName = y.name;
+
+			superApi.map(x => {
+				if (x.name === refName) {
+					this.setState(
+						{ 
+							stats: {
+								key: refName,
+								combat: x.powerstats.combat,
+								durability: x.powerstats.durability,
+								intelligence: x.powerstats.intelligence,
+								power: x.powerstats.power,
+								speed: x.powerstats.speed,
+								strength: x.powerstats.strength,	
+							}
+						});
+					};
+				});
+			});
+			console.log(this.state.stats)
+	};
   searchName = query => {
 	  this.setState({ results: []})
     API.searchByName(query)
 	.then(res => {
-		 console.log(res.data.data.results)
+		console.log(res.data.data.results)
 		this.setState({ results: res.data.data.results})
 	})
     .catch(err => console.log(err));
