@@ -2,40 +2,59 @@ import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import ResultList from "./ResultList";
 import API from "../utils/API";
-// import AuthService from './AuthService';
-import withAuth from "./withAuth";
-
-
 
 class SearchResultContainer extends Component {
   state = {
-    search: "",
-	  results: [],
+	search: "",
+	stats: [],
+	// stats: [{
+	// 	combat: '',
+	// 	durability: '',
+	// 	intelligence: '',
+	// 	power: '',
+	// 	speed: '',
+	// 	strength: ''
+	// }],
+	results: [],
   };
 
   // When this component mounts, search the Giphy API for pictures of kittens
   componentDidMount() {
-    this.searchGiphy("characters");
+	this.searchStat('stats');
+	this.searchComic("characters");
+	
   }
-
-  searchGiphy = query => {
-    API.search(query)
-    .then(res => {
-      this.setState({ results: res.data.results })	
-      
-      console.log(this.state.results)
-    })
-    .catch(err => console.log(err));
-  };
-
+//search comicvine for bios
   searchComic = query => {
-	  this.setState({ results: []})
-	  API.searchComicVine(query)
+    API.searchComicVine(query)
 	.then(res => {
-		console.log(res.data.results)
-		this.setState({ results: res.data.results })
+		 console.log( res.data.results)
+		this.setState({ results: res.data.results })	
+		
 	})
-    .catch(err => console.log(err));
+	.catch(err => console.log(err));
+  };
+//search superheroapi for stats
+  searchStat = query => {
+
+	  API.searchSuperHero(query)
+	.then(res => {
+		// let stat = res.data
+		
+		this.setState({ 
+			stats: res.data
+			// stats: {
+				// 	combat: stat.combat,
+				// 	durability: stat.durability,
+				// 	intelligence: stat.intelligence,
+				// 	power: stat.power,
+				// 	speed: stat.speed,
+				// 	strength: stat.strength
+				// }
+			})
+			console.log(this.state.stats)
+		})
+		.catch(err => console.log(err));
   };
 
   searchName = query => {
@@ -71,10 +90,10 @@ class SearchResultContainer extends Component {
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
         />
-        <ResultList results={this.state.results} />
+        <ResultList results={this.state.results} stats={this.state.stats} />
       </div>
     );
   }
 }
 
-export default withAuth(SearchResultContainer);
+export default SearchResultContainer;

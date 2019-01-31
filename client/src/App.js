@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import AuthService from './components/AuthService';
 import withAuth from './components/withAuth';
+import ControlledExpansionPanels from './components/expansion'
 // import SearchResultContainer from './components/SearchResultContainer.js'
 
 const Auth = new AuthService();
@@ -21,6 +22,7 @@ class App extends Component {
 		return (
 		  <div className="App">
 			<div className="App-header">
+			<ControlledExpansionPanels />
 			  <img src={logo} className="App-logo" alt="logo" />
 			  <h2>Welcome {this.props.user.email}</h2>
 			</div>

@@ -11,26 +11,25 @@ export default {
 	getUser: (id) => {
 		return axios.get(`/api/user/${id}`);
 	  },
+
 	// sign up a user to our service
 	signUpUser: (username, email, password) => {
 		return axios.post('api/signup', {username: username, email: email, password: password});
 	  },
 
-	search: (query) => {
-		let url = `https://comicvine.gamespot.com/api/search/?api_key=${comAPI}&format=json&resources=character&query=${query}`
+	searchComicVine: (query) => {
+		// let url = `https://comicvine.gamespot.com/api/search/?api_key=${comAPI}&format=json&resources=character&query=${query}`
 		// let marvelUrl = `http://gateway.marvel.com/v1/public/${query}?limit=10&apikey=${pubAPI}`
 		return axios.get(`/api/hero/`)
 	},
 	
+	searchSuperHero: (query) => {
+		return axios.get('/api/hero/stats')
+	},
+
 	searchByName: function(query) {
 		let url =`https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&orderBy=-name&limit=10&apikey=${pubAPI}`
 		return axios.get(url)
 	},
 	
-	searchComicVine: function(query) {
-    let url = `https://comicvine.gamespot.com/api/search/?api_key=${comAPI}&format=json&resources=character&query=${query}`
-    
-    return axios.get(url)
-   
-  }
 };
