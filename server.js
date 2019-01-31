@@ -72,10 +72,11 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+//get character info from comicvine
 app.get('/api/hero', (req, res) => {
-  // const pubAPI = 'a10c22d5644ec350180e248d8943669f'
+
   let url = `https://comicvine.gamespot.com/api/search/?api_key=46e737ba92d7d340875e822ad8bcea22fb3b0be0&format=json&resources=character&query=spider-man`
-  // let marvelUrl = `http://gateway.marvel.com/v1/public/characters?limit=10&apikey=${pubAPI}`
+
   console.log('==========')
   
     axios.get(url, { params: { q: req.query } })
@@ -88,6 +89,20 @@ app.get('/api/hero', (req, res) => {
   console.log('==========')
   
 });
+
+//get stats from superheroapi
+app.get('/api/hero/stats', (req, res) => {
+
+	let url = `https://akabab.github.io/superhero-api/api/all.json`
+	
+	  axios.get(url, { params: { q: req.query } })
+		  .then(response => {
+			
+			  res.json(response.data);
+		  })
+		  .catch(err => res.json(err.message));
+	
+  });
 
 app.get('/', isAuthenticated /* Using the express jwt MW here */, (req, res) => {
   res.send('You are authenticated'); //Sending some response when authenticated
