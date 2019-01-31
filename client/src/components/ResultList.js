@@ -2,7 +2,7 @@ import React from "react";
 // `${result.image.medium_url}`
 // `${result.thumbnail.path}/portrait_xlarge.${result.thumbnail.extension}`
 function ResultList(props) {
-
+console.log(props)
 	// src={`${result.thumbnail.path}/portrait_xlarge.${result.thumbnail.extension}`}
   return (
     <ul className="list-group" style={{listStyleType:'none'}}>
@@ -12,28 +12,28 @@ function ResultList(props) {
 		      <h1>{result.name}</h1>
 		      <p>{result.deck}</p>
 				<h2>Some Stats</h2>
-				{/* <ul>
-					{props.stats.map(stat => (
-						<li>
-							<p key={stat.strength}>{`Combat: ${stat.combat}`}</p>
-						</li>
-						<li>
-							<p key={stat.strength}>{`Intelligence: ${stat.intelligence}`}</p>
-						</li>
-						<li>
-							<p key={stat.strength}>{`Durability: ${stat.durability}`}</p>
-						</li>
-						<li>
-							<p key={stat.strength}>{`Power: ${stat.power}`}</p>
-						</li>
-						<li>
-							<p key={stat.strength}>{`Speed: ${stat.speed}`}</p>
-						</li>
-						<li>
-							<p key={stat.strength}>{`Strength: ${stat.strength}`}</p>
-						</li>
-					))}
-				</ul> */}
+					{/* {props.stats.filter(stat => (
+						<ul>
+							<li className="list-group-item" key={stat.id}>
+								<p key={stat.strength}>{`Combat: ${stat.combat}`}</p>
+							</li>
+							<li>
+								<p key={stat.strength}>{`Intelligence: ${stat.intelligence}`}</p>
+							</li>
+							<li>
+								<p key={stat.strength}>{`Durability: ${stat.durability}`}</p>
+							</li>
+							<li>
+								<p key={stat.strength}>{`Power: ${stat.power}`}</p>
+							</li>
+							<li>
+								<p key={stat.strength}>{`Speed: ${stat.speed}`}</p>
+							</li>
+							<li>
+								<p key={stat.strength}>{`Strength: ${stat.strength}`}</p>
+							</li>
+						</ul>	
+					))} */}
         </li>
       ))}
     </ul>

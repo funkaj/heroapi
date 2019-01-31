@@ -8,14 +8,6 @@ class SearchResultContainer extends Component {
 	search: "",
 	superheroApi: [],
 	stats: [],
-	// stats: [{
-	// 	combat: '',
-	// 	durability: '',
-	// 	intelligence: '',
-	// 	power: '',
-	// 	speed: '',
-	// 	strength: ''
-	// }],
 	results: [],
 
   };
@@ -58,23 +50,23 @@ class SearchResultContainer extends Component {
 
 			superApi.map(x => {
 				if (x.name === refName) {
-					this.setState(
-						{ 
-							stats: {
-								key: refName,
-								combat: x.powerstats.combat,
-								durability: x.powerstats.durability,
-								intelligence: x.powerstats.intelligence,
-								power: x.powerstats.power,
-								speed: x.powerstats.speed,
-								strength: x.powerstats.strength,	
-							}
-						});
-					};
-				});
+					
+					this.setState({...this.state.results, 
+						stat: {
+							key: refName, 
+							combat: x.powerstats.combat, 
+							durability: x.powerstats.durability, 
+							intelligence: x.powerstats.intelligence,
+							power: x.powerstats.power,
+							speed: x.powerstats.speed,
+							strength: x.powerstats.strength,	
+					}});
+				};
 			});
-			console.log(this.state.stats)
+		});
+			console.log(this.state.results)
 	};
+
   searchName = query => {
 	  this.setState({ results: []})
     API.searchByName(query)
