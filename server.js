@@ -8,6 +8,7 @@ const app = express();
 const db = require('./models');
 const axios = require('axios');
 const PORT = process.env.PORT || 3001;
+require('dotenv').config()
 
 // Setting CORS so that any website can
 // Access our API

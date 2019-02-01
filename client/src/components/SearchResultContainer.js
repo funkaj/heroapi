@@ -16,7 +16,7 @@ class SearchResultContainer extends Component {
   componentDidMount() {
 	this.searchStat('stats');
 	this.searchComic("characters");
-	
+
   }
 //search comicvine for bios
   searchComic = query => {
@@ -45,13 +45,14 @@ class SearchResultContainer extends Component {
 		const comicRes = this.state.results;
 		const superApi = this.state.superheroApi;
 
-		comicRes.map(y => {
+		comicRes.forEach(y => {
 			const refName = y.name;
 
-			superApi.map(x => {
+			superApi.forEach(x => {
+			
 				if (x.name === refName) {
 					
-					this.setState({...this.state.results, 
+					this.state.results.push({ 
 						stat: {
 							key: refName, 
 							combat: x.powerstats.combat, 
@@ -60,7 +61,8 @@ class SearchResultContainer extends Component {
 							power: x.powerstats.power,
 							speed: x.powerstats.speed,
 							strength: x.powerstats.strength,	
-					}});
+						}
+					});
 				};
 			});
 		});

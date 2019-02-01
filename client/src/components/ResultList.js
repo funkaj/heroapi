@@ -2,7 +2,7 @@ import React from "react";
 // `${result.image.medium_url}`
 // `${result.thumbnail.path}/portrait_xlarge.${result.thumbnail.extension}`
 function ResultList(props) {
-console.log(props)
+
 	// src={`${result.thumbnail.path}/portrait_xlarge.${result.thumbnail.extension}`}
   return (
     <ul className="list-group" style={{listStyleType:'none'}}>
