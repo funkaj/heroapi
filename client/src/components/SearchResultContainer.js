@@ -41,28 +41,17 @@ class SearchResultContainer extends Component {
 	.catch(err => console.log(err));
 	};
 
-	matchStats = x => {
+	matchStats = () => {
 		const comicRes = this.state.results;
 		const superApi = this.state.superheroApi;
-
+		console.log(superApi)
 		comicRes.forEach(y => {
 			const refName = y.name;
 
 			superApi.forEach(x => {
-			
+				
 				if (x.name === refName) {
-					
-					this.state.results.push({ 
-						stat: {
-							key: refName, 
-							combat: x.powerstats.combat, 
-							durability: x.powerstats.durability, 
-							intelligence: x.powerstats.intelligence,
-							power: x.powerstats.power,
-							speed: x.powerstats.speed,
-							strength: x.powerstats.strength,	
-						}
-					});
+					this.state.results.push({ y: x.powerstats	});
 				};
 			});
 		});

@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config()
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const exjwt = require('express-jwt');
@@ -8,7 +9,6 @@ const app = express();
 const db = require('./models');
 const axios = require('axios');
 const PORT = process.env.PORT || 3001;
-require('dotenv').config()
 
 // Setting CORS so that any website can
 // Access our API
@@ -75,8 +75,8 @@ if (process.env.NODE_ENV === "production") {
 
 //get character info from comicvine
 app.get('/api/hero', (req, res) => {
-
-  let url = `https://comicvine.gamespot.com/api/search/?api_key=46e737ba92d7d340875e822ad8bcea22fb3b0be0&format=json&resources=character&query=spider-man`
+  const key = process.env.REACT_APP_COMIC_VINE_API_KEY
+  let url = `https://comicvine.gamespot.com/api/search/?api_key=${key}&format=json&resources=character&query=spider-man`
 
   console.log('==========')
   
