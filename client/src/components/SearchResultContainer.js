@@ -49,7 +49,7 @@ matchStats = () => {
 	comicRes.forEach(y => {
 		const refName = y.name;
 
-		superApi.filter(x => {
+		superApi.forEach(x => {
 			
 			if (x.name === refName) {
 

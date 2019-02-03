@@ -1,6 +1,21 @@
-.circle {
-    background-color: brown;
-   
-    border-radius: 50%;
-    
+.stat-bar {
+	background: rgb(170, 170, 245);
+	text-align: center;
+	
+}
+
+.stat-item {
+	border-right: black 1px solid;
+}
+
+.stat-item:last-child {
+	border-right: none;
+}
+
+.hero {
+	margin-bottom: 20px;
+}
+
+ul {
+	padding: 0;
 }

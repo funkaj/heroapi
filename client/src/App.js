@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import AuthService from './components/AuthService';
 import withAuth from './components/withAuth';
 import ControlledExpansionPanels from './components/expansion'
-// import SearchResultContainer from './components/SearchResultContainer.js'
+import './App.css'
+
 
 const Auth = new AuthService();
 
@@ -14,7 +15,7 @@ class App extends Component {
 	  };
 	
 	  goToEditProfile = () => {
-		this.props.history.replace('/profile');
+		this.props.history.replace('/hero');
 	  };
 	
 	  render() {
