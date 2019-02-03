@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SearchForm from "./SearchForm";
-import ResultList from "./ResultList";
+import ResultList from "./ResultList/ResultList";
 import API from "../utils/API";
 import CircularIndeterminate from './Loader'
 
@@ -40,25 +40,26 @@ class SearchResultContainer extends Component {
 		this.setState({	superheroApi: stat });
 	})
 	.catch(err => console.log(err));
-	};
+};
 // loop through results state and superheroApi match characters and create a stats array in state to hold them
-	matchStats = () => {
-		const comicRes = this.state.results;
-		const superApi = this.state.superheroApi;
+matchStats = () => {
+	const comicRes = this.state.results;
+	const superApi = this.state.superheroApi;
 
-		comicRes.forEach(y => {
-			const refName = y.name;
+	comicRes.forEach(y => {
+		const refName = y.name;
 
-				superApi.forEach(x => {
-				
-					if (x.name === refName) {
-					
+		superApi.filter(x => {
+			
+			if (x.name === refName) {
+
 						this.state.stats.push({ ...y, appearance: x.appearance, stats: x.powerstats });
 
-					};
+					} 
 				});
-		});
-			console.log(this.state.stats)
+			})
+	
+		console.log(this.state.stats)
 	};
 
   searchName = query => {
