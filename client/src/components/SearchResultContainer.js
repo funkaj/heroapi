@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import ResultList from "./ResultList";
 import API from "../utils/API";
+import CircularIndeterminate from './Loader'
 
 class SearchResultContainer extends Component {
   state = {
-	search: "",
-	superheroApi: [],
-	stats: [],
-	results: [],
-
+		isLoaded: false,
+		search: "",
+		superheroApi: [],
+		results: [],
+		stats: [],
   };
 
   // When this component mounts, search the Giphy API for pictures of kittens
@@ -17,15 +18,16 @@ class SearchResultContainer extends Component {
 	this.searchStat('stats');
 	this.searchComic("characters");
 
-  }
+	}
+	
 //search comicvine for bios
   searchComic = query => {
     API.searchComicVine(query)
 	.then(res => {
-		console.log( res.data.results)
 		this.setState({ results: res.data.results })	
+	}).then(res => {
 		this.matchStats()
-		
+		this.setState({loading: true})
 	})
 	.catch(err => console.log(err));
   };
@@ -36,26 +38,27 @@ class SearchResultContainer extends Component {
 	.then(res => {
 		let stat = res.data;
 		this.setState({	superheroApi: stat });
-	
 	})
 	.catch(err => console.log(err));
 	};
-
+// loop through results state and superheroApi match characters and create a stats array in state to hold them
 	matchStats = () => {
 		const comicRes = this.state.results;
 		const superApi = this.state.superheroApi;
-		console.log(superApi)
+
 		comicRes.forEach(y => {
 			const refName = y.name;
 
-			superApi.forEach(x => {
+				superApi.forEach(x => {
 				
-				if (x.name === refName) {
-					this.state.results.push({ y: x.powerstats	});
-				};
-			});
+					if (x.name === refName) {
+					
+						this.state.stats.push({ ...y, appearance: x.appearance, stats: x.powerstats });
+
+					};
+				});
 		});
-			console.log(this.state.results)
+			console.log(this.state.stats)
 	};
 
   searchName = query => {
@@ -84,6 +87,7 @@ class SearchResultContainer extends Component {
   };
 
   render() {
+		const { isLoaded, stats } = this.state
     return (
       <div>
         <SearchForm
@@ -91,8 +95,13 @@ class SearchResultContainer extends Component {
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
         />
-        <ResultList results={this.state.results} stats={this.state.stats} />
-      </div>
+				{
+					isLoaded ?
+				 
+				<CircularIndeterminate /> :
+				<ResultList results={this.state.results} stats={stats}/>
+				}
+				</div>
     );
   }
 }

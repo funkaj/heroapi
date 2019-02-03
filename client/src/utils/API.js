@@ -20,8 +20,8 @@ export default {
 		return axios.get('/api/hero/stats')
 	},
 
-	// searchByName: function(query) {
-	// 	return axios.get(url)
-	// },
+	searchByName: function(query) {
+		return axios.get('api/hero/:name')
+	},
 	
 };

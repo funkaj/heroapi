@@ -76,7 +76,7 @@ if (process.env.NODE_ENV === "production") {
 //get character info from comicvine
 app.get('/api/hero', (req, res) => {
   const key = process.env.REACT_APP_COMIC_VINE_API_KEY
-  let url = `https://comicvine.gamespot.com/api/search/?api_key=${key}&format=json&resources=character&query=spider-man`
+  let url = `https://comicvine.gamespot.com/api/search/?api_key=${key}&format=json&resources=character&query=spider-girl`
 
   console.log('==========')
   
