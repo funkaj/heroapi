@@ -77,8 +77,6 @@ if (process.env.NODE_ENV === "production") {
 app.get('/api/hero', (req, res) => {
   const key = process.env.REACT_APP_COMIC_VINE_API_KEY
   let url = `https://comicvine.gamespot.com/api/search/?api_key=${key}&format=json&resources=character&query=spider-man`
-
-  console.log('==========')
   
     axios.get(url, { params: { q: req.query } })
         .then(response => {
@@ -86,24 +84,33 @@ app.get('/api/hero', (req, res) => {
             res.json(response.data);
         })
         .catch(err => res.json(err.message));
-
-  console.log('==========')
   
 });
 
 //get stats from superheroapi
 app.get('/api/hero/stats', (req, res) => {
-
-	let url = `https://akabab.github.io/superhero-api/api/all.json`
+  
+  let url = `https://akabab.github.io/superhero-api/api/all.json`
 	
-	  axios.get(url, { params: { q: req.query } })
-		  .then(response => {
-			
-			  res.json(response.data);
-		  })
-		  .catch(err => res.json(err.message));
+  axios.get(url, { params: { q: req.query } })
+  .then(response => {
+    
+    res.json(response.data);
+  })
+  .catch(err => res.json(err.message));
 	
-  });
+});
+app.get('/api/hero/:name', (req, res) => {
+  const key = process.env.REACT_APP_COMIC_VINE_API_KEY
+  const search = req.params.name 
+  let url = `https://comicvine.gamespot.com/api/search/?api_key=${key}&format=json&resources=character&query=${search}`
+  axios.get(url)
+  .then(response => {
+          res.json(response.data);
+        })
+        .catch(err => res.json(err.message));
+  
+});
 
 app.get('/', isAuthenticated /* Using the express jwt MW here */, (req, res) => {
   res.send('You are authenticated'); //Sending some response when authenticated
