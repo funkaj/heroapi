@@ -10,9 +10,10 @@ class SearchResultContainer extends Component {
 		search: '',
 		superheroApi: [],
 		results: [],
-		stats: [],
 	};
-
+	loading = () => {
+		this.setState({ isLoaded: true });
+	};
 	// When this component mounts, search the Giphy API for pictures of kittens
 	componentDidMount() {
 		this.searchStat('stats');
@@ -27,7 +28,7 @@ class SearchResultContainer extends Component {
 	//call match apis and push to stats
 	matchNew = () => {
 		this.matchStats();
-		this.setState({ loading: true });
+		this.setState({ isLoaded: true });
 	};
 	//search comicvine for characters
 	searchComic = query => {
@@ -36,7 +37,7 @@ class SearchResultContainer extends Component {
 				this.setState({ results: res.data.results });
 			})
 			.then(res => {
-				this.matchNew();
+				this.matchNew(this.loading);
 			})
 			.catch(err => console.log(err));
 	};
@@ -51,7 +52,7 @@ class SearchResultContainer extends Component {
 	};
 
 	// loop through results state and superheroApi match characters and create a stats array in state to hold them
-	matchStats = () => {
+	matchStats = callback => {
 		const comicRes = this.state.results;
 		const superApi = this.state.superheroApi;
 
@@ -59,15 +60,21 @@ class SearchResultContainer extends Component {
 			const refName = y.name;
 			superApi.forEach(x => {
 				if (x.name === refName) {
-					this.state.stats.push({
-						...y,
-						appearance: x.appearance,
-						stats: x.powerstats,
+					Object.assign(y, {
+						slug: x.slug,
+						combat: x.powerstats.combat,
+						intelligence: x.powerstats.intelligence,
+						durability: x.powerstats.durability,
+						power: x.powerstats.power,
+						speed: x.powerstats.speed,
+						strength: x.powerstats.strength,
 					});
 				}
 			});
 		});
+		if (callback) callback();
 	};
+
 	//search Comic vine for character by user entered name
 	searchName = query => {
 		this.resetState();
@@ -94,7 +101,7 @@ class SearchResultContainer extends Component {
 	};
 
 	render() {
-		const { isLoaded, stats } = this.state;
+		const { isLoaded } = this.state;
 		return (
 			<div>
 				<SearchForm
@@ -103,12 +110,9 @@ class SearchResultContainer extends Component {
 					handleInputChange={this.handleInputChange}
 				/>
 				{isLoaded ? (
-					<CircularIndeterminate />
+					<ResultList results={this.state.results} />
 				) : (
-					<ResultList
-						results={this.state.results}
-						stats={this.state.superheroApi}
-					/>
+					<CircularIndeterminate />
 				)}
 			</div>
 		);

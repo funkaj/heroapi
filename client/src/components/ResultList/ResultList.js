@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Stats from '../Stats/Stats';
+import StatList from '../StatList/StatList';
 
 const styles = {
 	card: {
@@ -35,15 +35,16 @@ function ResultList(props) {
 							<Card className={classes.card}>
 								<CardContent>
 									<li className='list-group-item hero' key={result.id}>
-										{/* <img
+										<img
+											key={result.image.small_url}
 											alt={result.name}
 											className='img-fluid'
 											src={result.image.small_url}
-										/> */}
-										<p>{result.publisher.name}</p>
-										<h1>{result.name}</h1>
-										<p>{result.deck}</p>
-										<Stats result={result} stats={props.stats} />
+										/>
+										<p key={result.publisher.name}>{result.publisher.name}</p>
+										<h1 key={result.name}>{result.name}</h1>
+										<p key={result.slug}>{result.deck}</p>
+										<StatList res={result} />
 									</li>
 								</CardContent>
 							</Card>
