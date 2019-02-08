@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-
+import Appbar from './components/Navbar/Appbar'
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import axios from "axios";
 // Our Components
@@ -23,7 +23,7 @@ if(localStorage.getItem("id_token")) {
 ReactDOM.render(
     <Router>
         <div>
-            <Navbar />
+			<Appbar />
             <Route exact path="/" component={App} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
