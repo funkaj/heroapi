@@ -68,6 +68,12 @@ class SearchResultContainer extends Component {
 						power: x.powerstats.power,
 						speed: x.powerstats.speed,
 						strength: x.powerstats.strength,
+						work: x.work.occupation,
+						base: x.work.base,
+						groups: x.connections.groupAffiliation,
+						family: x.connections.relatives,
+						fullname: x.biography.fullName,
+						birth: x.biography.placeOfBirth,
 					});
 				}
 			});
