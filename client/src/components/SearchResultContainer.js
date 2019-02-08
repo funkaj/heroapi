@@ -21,8 +21,7 @@ class SearchResultContainer extends Component {
 	}
 	//reset state for new search
 	resetState = () => {
-		this.setState({ loading: false });
-		this.setState({ stats: [] });
+		this.setState({ isLoading: false });
 		this.setState({ results: [] });
 	};
 	//call match apis and push to stats
