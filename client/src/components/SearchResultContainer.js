@@ -115,7 +115,6 @@ class SearchResultContainer extends Component {
 	};
 
 	goToResult = e => {
-		console.log('eeeeeeeeeeeeeeeee');
 		this.setState({ isBio: false });
 	};
 

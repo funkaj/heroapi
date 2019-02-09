@@ -10,47 +10,47 @@ function StatList(props) {
 				<Grid container spacing={16} className='stat-bar'>
 					<Grid item xs={2} className='stat-item'>
 						<li className='list-group-item'>
-							<p key={props.res.combat}>{`Combat: ${
-								props.res.combat ? props.res.combat : '-'
+							<p key={props.charBio.combat}>{`Combat: ${
+								props.charBio.combat ? props.charBio.combat : '-'
 							}`}</p>
 						</li>
 					</Grid>
 					<Grid item xs={2} className='stat-item'>
 						<li className='list-group-item'>
-							<p key={props.res.intelligence}>
+							<p key={props.charBio.intelligence}>
 								{`Intelligence: ${
-									props.res.intelligence ? props.res.intelligence : '-'
+									props.charBio.intelligence ? props.charBio.intelligence : '-'
 								}`}{' '}
 							</p>
 						</li>
 					</Grid>
 					<Grid item xs={2} className='stat-item'>
 						<li className='list-group-item'>
-							<p key={props.res.durability}>
+							<p key={props.charBio.durability}>
 								{`Durability: ${
-									props.res.durability ? props.res.durability : '-'
+									props.charBio.durability ? props.charBio.durability : '-'
 								}`}{' '}
 							</p>
 						</li>
 					</Grid>
 					<Grid item xs={2} className='stat-item'>
 						<li className='list-group-item'>
-							<p key={props.res.power}>{`Power: ${
-								props.res.power ? props.res.power : '-'
+							<p key={props.charBio.power}>{`Power: ${
+								props.charBio.power ? props.charBio.power : '-'
 							}`}</p>
 						</li>
 					</Grid>
 					<Grid item xs={2} className='stat-item'>
 						<li className='list-group-item'>
-							<p key={props.res.speed}>{`Speed: ${
-								props.res.speed ? props.res.speed : '-'
+							<p key={props.charBio.speed}>{`Speed: ${
+								props.charBio.speed ? props.charBio.speed : '-'
 							}`}</p>
 						</li>
 					</Grid>
 					<Grid item xs={2} className='stat-item'>
 						<li className='list-group-item'>
-							<p key={props.res.strength}>{`Strength: ${
-								props.res.strength ? props.res.strength : '-'
+							<p key={props.charBio.strength}>{`Strength: ${
+								props.charBio.strength ? props.charBio.strength : '-'
 							}`}</p>
 						</li>
 					</Grid>
