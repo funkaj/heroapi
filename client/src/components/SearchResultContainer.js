@@ -57,6 +57,7 @@ class SearchResultContainer extends Component {
 	matchStats = callback => {
 		const comicRes = this.state.results;
 		const superApi = this.state.superheroApi;
+		console.log(superApi);
 
 		comicRes.forEach(y => {
 			const refName = y.name;
@@ -76,6 +77,10 @@ class SearchResultContainer extends Component {
 						family: x.connections.relatives,
 						fullname: x.biography.fullName,
 						birth: x.biography.placeOfBirth,
+						img_lg: x.images.lg,
+						img_md: x.images.md,
+						img_sm: x.images.sm,
+						img_xs: x.images.xs,
 					});
 				}
 			});

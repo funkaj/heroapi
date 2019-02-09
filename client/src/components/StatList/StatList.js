@@ -6,6 +6,7 @@ function StatList(props) {
 	return (
 		<div>
 			<h2>Some Stats</h2>
+
 			<ul style={{ listStyleType: 'none' }}>
 				<Grid container spacing={16} className='stat-bar'>
 					<Grid item xs={2} className='stat-item'>

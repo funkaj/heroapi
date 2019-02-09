@@ -18,6 +18,9 @@ const styles = theme => ({
 		overflow: 'hidden',
 		backgroundColor: theme.palette.background.paper,
 	},
+	InfoIcon: {
+		color: 'white',
+	},
 });
 /**
  * The example data is structured as follows:
@@ -55,7 +58,7 @@ function ResultList(props) {
 									className={classes.icon}
 									id={result.id}
 									onClick={() => props.goToBio(result)}>
-									<InfoIcon />
+									<InfoIcon style={{ color: 'white' }} />
 								</IconButton>
 							}
 						/>
