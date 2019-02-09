@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 // import tileData from './tileData';
 import './ResultList.css';
+// import { Link } from '@material-ui/core';
 
 const styles = theme => ({
 	root: {
@@ -37,6 +38,7 @@ const styles = theme => ({
  * ];
  */
 function ResultList(props) {
+	console.log(props);
 	const { classes } = props;
 
 	return (
@@ -47,9 +49,12 @@ function ResultList(props) {
 						<img src={result.image.small_url} alt={result.id} />
 						<GridListTileBar
 							title={result.name}
-							subtitle={<span>by: {result.name}</span>}
+							subtitle={<span>Publisher: {result.publisher.name}</span>}
 							actionIcon={
-								<IconButton className={classes.icon}>
+								<IconButton
+									className={classes.icon}
+									id={result.id}
+									onClick={() => props.goToBio(result)}>
 									<InfoIcon />
 								</IconButton>
 							}

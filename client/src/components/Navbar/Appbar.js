@@ -87,7 +87,7 @@ const styles = theme => ({
 class PrimarySearchAppBar extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log(props);
+
 		this.Auth = new AuthService();
 	}
 	state = {

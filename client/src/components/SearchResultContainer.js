@@ -3,13 +3,16 @@ import SearchForm from './SearchForm';
 import ResultList from './ResultList/ResultList';
 import API from '../utils/API';
 import CircularIndeterminate from './Loader';
+import Bio from './Bio/Bio';
 
 class SearchResultContainer extends Component {
 	state = {
 		isLoaded: false,
+		isBio: false,
 		search: '',
 		superheroApi: [],
 		results: [],
+		bio: [],
 	};
 	loading = () => {
 		this.setState({ isLoaded: true });
@@ -105,8 +108,20 @@ class SearchResultContainer extends Component {
 		this.searchName(this.state.search);
 	};
 
+	goToBio = bio => {
+		this.setState({ bio: bio });
+		console.log(bio);
+		this.setState({ isBio: true });
+	};
+
+	goToResult = e => {
+		console.log('eeeeeeeeeeeeeeeee');
+		this.setState({ isBio: false });
+	};
+
 	render() {
-		const { isLoaded } = this.state;
+		const { isLoaded, isBio } = this.state;
+
 		return (
 			<div>
 				<SearchForm
@@ -114,8 +129,14 @@ class SearchResultContainer extends Component {
 					handleFormSubmit={this.handleFormSubmit}
 					handleInputChange={this.handleInputChange}
 				/>
-				{isLoaded ? (
-					<ResultList results={this.state.results} />
+				{isBio ? (
+					<Bio
+						bio={this.state.bio}
+						isbio={this.state.isBio}
+						goToResult={this.goToResult}
+					/>
+				) : isLoaded ? (
+					<ResultList results={this.state.results} goToBio={this.goToBio} />
 				) : (
 					<CircularIndeterminate />
 				)}
