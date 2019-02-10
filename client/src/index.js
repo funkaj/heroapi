@@ -26,11 +26,13 @@ ReactDOM.render(
 	<Router>
 		<div>
 			<Appbar />
-			<Route exact path='/' component={App} />
-			<Route exact path='/login' component={Login} />
-			<Route exact path='/signup' component={Signup} />
-			<Route exact path='/profile' component={Profile} />
-			<Route path='/hero' component={Hero} />
+			<div className='main-margin'>
+				<Route exact path='/' component={App} />
+				<Route exact path='/login' component={Login} />
+				<Route exact path='/signup' component={Signup} />
+				<Route exact path='/profile' component={Profile} />
+				<Route path='/hero' component={Hero} />
+			</div>
 		</div>
 	</Router>,
 	document.getElementById('root')

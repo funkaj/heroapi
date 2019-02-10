@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import rufus from './rufus1.jpg';
 import AuthService from './components/AuthService';
 import withAuth from './components/withAuth';
-import ControlledExpansionPanels from './components/expansion';
 import './App.css';
 
 const Auth = new AuthService();
@@ -22,24 +21,9 @@ class App extends Component {
 		return (
 			<div className='App'>
 				<div className='App-header'>
-					<ControlledExpansionPanels />
-					<img src={logo} className='App-logo' alt='logo' />
 					<h2>Welcome {this.props.user.email}</h2>
+					<img src={rufus} className='App-logo' alt='logo' />
 				</div>
-				<p className='App-intro'>
-					<button
-						type='button'
-						className='btn btn-primary'
-						onClick={this.goToHeroSearch}>
-						Go to Profile
-					</button>
-					<button
-						type='button'
-						className='btn btn-danger'
-						onClick={this.handleLogout}>
-						Logout
-					</button>
-				</p>
 			</div>
 		);
 	}
