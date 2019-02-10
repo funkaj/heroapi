@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+import compose from 'recompose/compose';
 // import tileData from './tileData';
 import './ResultList.css';
-// import { Link } from '@material-ui/core';
 
 const styles = theme => ({
 	root: {
@@ -17,9 +18,6 @@ const styles = theme => ({
 		justifyContent: 'space-around',
 		overflow: 'hidden',
 		backgroundColor: theme.palette.background.paper,
-	},
-	InfoIcon: {
-		color: 'white',
 	},
 });
 /**
@@ -40,13 +38,32 @@ const styles = theme => ({
  *   },
  * ];
  */
+
 function ResultList(props) {
+	const getGridListCols = () => {
+		if (isWidthUp('xl', props.width)) {
+			return 4;
+		}
+
+		if (isWidthUp('md', props.width)) {
+			return 3;
+		}
+
+		if (isWidthUp('sm', props.width)) {
+			return 2;
+		}
+
+		return 1;
+	};
 	console.log(props);
 	const { classes } = props;
 
 	return (
 		<div className={classes.root}>
-			<GridList cellHeight={500} className={classes.gridList} cols={3}>
+			<GridList
+				cellHeight={500}
+				className={classes.gridList}
+				cols={getGridListCols()}>
 				{props.results.map(result => (
 					<GridListTile key={result.image.small_url} cols={result.cols || 1}>
 						<img src={result.image.small_url} alt={result.id} />
@@ -73,4 +90,9 @@ ResultList.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ResultList);
+export default compose(
+	withStyles(styles, {
+		name: 'ResultList',
+	}),
+	withWidth()
+)(ResultList);
