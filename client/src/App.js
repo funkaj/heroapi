@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import rufus from './rufus1.jpg';
+import pelephant from './pelephant.svg';
 import AuthService from './components/AuthService';
 import withAuth from './components/withAuth';
 import './App.css';
@@ -22,7 +22,7 @@ class App extends Component {
 			<div className='App'>
 				<div className='App-header'>
 					<h2>Welcome {this.props.user.email}</h2>
-					<img src={rufus} className='App-logo' alt='logo' />
+					<img src={pelephant} className='App-logo' alt='logo' />
 				</div>
 			</div>
 		);
