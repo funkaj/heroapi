@@ -10,7 +10,6 @@ import axios from 'axios';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import Signup from './components/Signup';
-// import Navbar from './components/Navbar';
 import Hero from './components/SearchResultContainer';
 
 // ReactDOM.render(<App />, document.getElementById('root'));
