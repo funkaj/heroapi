@@ -16,6 +16,7 @@ import AuthService from '../AuthService';
 
 const styles = theme => ({
 	root: {
+		
 		width: '100%',
 	},
 	grow: {
@@ -25,35 +26,14 @@ const styles = theme => ({
 		marginLeft: -12,
 		marginRight: 20,
 	},
+	appColor: {
+		backgroundColor: '#000000',
+	},
 	title: {
 		display: 'none',
 		[theme.breakpoints.up('sm')]: {
 			display: 'block',
 		},
-	},
-	search: {
-		position: 'relative',
-		borderRadius: theme.shape.borderRadius,
-		backgroundColor: fade(theme.palette.common.white, 0.15),
-		'&:hover': {
-			backgroundColor: fade(theme.palette.common.white, 0.25),
-		},
-		marginRight: theme.spacing.unit * 2,
-		marginLeft: 0,
-		width: '100%',
-		[theme.breakpoints.up('sm')]: {
-			marginLeft: theme.spacing.unit * 3,
-			width: 'auto',
-		},
-	},
-	searchIcon: {
-		width: theme.spacing.unit * 9,
-		height: '100%',
-		position: 'absolute',
-		pointerEvents: 'none',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
 	},
 	inputRoot: {
 		color: 'inherit',
@@ -179,8 +159,8 @@ class PrimarySearchAppBar extends React.Component {
 		);
 
 		return (
-			<div className={classes.root}>
-				<AppBar position='static'>
+			<div className={classes.root} >
+				<AppBar position='static' className={classes.appColor}>
 					<Toolbar>
 						<Typography
 							className={classes.title}
