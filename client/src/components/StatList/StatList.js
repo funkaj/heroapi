@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
 function StatList(props) {
-	console.log(props);
+	
 	return (
 		<div>
 			<h2>Some Stats</h2>

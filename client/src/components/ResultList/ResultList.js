@@ -55,7 +55,7 @@ function ResultList(props) {
 
 		return 1;
 	};
-	console.log(props);
+	
 	const { classes } = props;
 
 	return (

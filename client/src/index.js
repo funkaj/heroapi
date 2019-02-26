@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+//import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import Appbar from './components/Navbar/Appbar';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
@@ -26,11 +26,10 @@ ReactDOM.render(
 		<div>
 			<Appbar />
 			<div className='main-margin'>
-				<Route exact path='/' component={App} />
+				<Route exact path='/' component={Hero} />
 				<Route exact path='/login' component={Login} />
 				<Route exact path='/signup' component={Signup} />
 				<Route exact path='/profile' component={Profile} />
-				<Route path='/hero' component={Hero} />
 			</div>
 		</div>
 	</Router>,

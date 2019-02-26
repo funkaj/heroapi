@@ -21,7 +21,7 @@ class SearchResultContainer extends Component {
 	componentDidMount() {
 		this.searchStat('stats');
 		this.searchComic('characters');
-	}
+	};
 	//reset state for new search
 	resetState = () => {
 		this.setState({ isLoading: false });
@@ -57,7 +57,6 @@ class SearchResultContainer extends Component {
 	matchStats = callback => {
 		const comicRes = this.state.results;
 		const superApi = this.state.superheroApi;
-		console.log(superApi);
 
 		comicRes.forEach(y => {
 			const refName = y.name;
@@ -143,10 +142,10 @@ class SearchResultContainer extends Component {
 					<ResultList results={this.state.results} goToBio={this.goToBio} />
 				) : (
 					<CircularIndeterminate />
-				)}
+				)};
 			</div>
 		);
-	}
-}
+	};
+};
 
 export default SearchResultContainer;
