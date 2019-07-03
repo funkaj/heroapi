@@ -1,0 +1,8 @@
+#bio-div {
+    width: 75vw;
+    margin: 0 auto;
+    
+};
+#bio-div > p {
+     font-weight: bolder !important;
+}

@@ -4,7 +4,7 @@ import ResultList from './ResultList/ResultList';
 import API from '../utils/API';
 import CircularIndeterminate from './Loader';
 import Bio from './Bio/Bio';
-
+import './resultBio.css';
 class SearchResultContainer extends Component {
 	state = {
 		isLoaded: false,
@@ -21,7 +21,7 @@ class SearchResultContainer extends Component {
 	componentDidMount() {
 		this.searchStat('stats');
 		this.searchComic('characters');
-	};
+	}
 	//reset state for new search
 	resetState = () => {
 		this.setState({ isLoading: false });
@@ -106,7 +106,6 @@ class SearchResultContainer extends Component {
 		});
 	};
 
-	// When the form is submitted, search the Giphy API for `this.state.search`
 	handleFormSubmit = event => {
 		event.preventDefault();
 		this.searchName(this.state.search);
@@ -114,7 +113,7 @@ class SearchResultContainer extends Component {
 
 	goToBio = bio => {
 		this.setState({ bio: bio });
-		console.log(bio);
+		console.log(bio.description);
 		this.setState({ isBio: true });
 	};
 
@@ -142,10 +141,15 @@ class SearchResultContainer extends Component {
 					<ResultList results={this.state.results} goToBio={this.goToBio} />
 				) : (
 					<CircularIndeterminate />
-				)};
+				)}
+				<div
+					id='bio-div'
+					dangerouslySetInnerHTML={{ __html: `${this.state.bio.description}` }}
+				/>
+				<div />
 			</div>
 		);
-	};
-};
+	}
+}
 
 export default SearchResultContainer;

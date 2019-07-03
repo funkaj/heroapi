@@ -6,7 +6,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -16,7 +15,6 @@ import AuthService from '../AuthService';
 
 const styles = theme => ({
 	root: {
-		
 		width: '100%',
 	},
 	grow: {
@@ -159,7 +157,7 @@ class PrimarySearchAppBar extends React.Component {
 		);
 
 		return (
-			<div className={classes.root} >
+			<div className={classes.root}>
 				<AppBar position='static' className={classes.appColor}>
 					<Toolbar>
 						<Typography

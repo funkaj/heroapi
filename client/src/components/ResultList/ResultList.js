@@ -8,7 +8,6 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import compose from 'recompose/compose';
-// import tileData from './tileData';
 import './ResultList.css';
 
 const styles = theme => ({
@@ -20,24 +19,6 @@ const styles = theme => ({
 		backgroundColor: theme.palette.background.paper,
 	},
 });
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *     cols: 2,
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
 
 function ResultList(props) {
 	const getGridListCols = () => {
@@ -55,13 +36,13 @@ function ResultList(props) {
 
 		return 1;
 	};
-	
+
 	const { classes } = props;
 
 	return (
 		<div className={classes.root}>
 			<GridList
-				cellHeight={500}
+				cellHeight={800}
 				className={classes.gridList}
 				cols={getGridListCols()}>
 				{props.results.map(result => (
