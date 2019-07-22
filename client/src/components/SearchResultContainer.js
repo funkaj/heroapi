@@ -132,21 +132,23 @@ class SearchResultContainer extends Component {
 					handleInputChange={this.handleInputChange}
 				/>
 				{isBio ? (
-					<Bio
-						bio={this.state.bio}
-						isbio={this.state.isBio}
-						goToResult={this.goToResult}
-					/>
+	<div>
+						<Bio
+							bio={this.state.bio}
+							isbio={this.state.isBio}
+							goToResult={this.goToResult}
+						/>
+						<div
+							id='bio-div'
+							dangerouslySetInnerHTML={{ __html: `${this.state.bio.description}` }}
+						/>
+						<div />
+	</div>
 				) : isLoaded ? (
 					<ResultList results={this.state.results} goToBio={this.goToBio} />
 				) : (
 					<CircularIndeterminate />
 				)}
-				<div
-					id='bio-div'
-					dangerouslySetInnerHTML={{ __html: `${this.state.bio.description}` }}
-				/>
-				<div />
 			</div>
 		);
 	}
